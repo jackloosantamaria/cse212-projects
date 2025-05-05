@@ -13,6 +13,14 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
+        //Plan Multiple Of:
+        //1. Create an array of type double equal in size of variable length
+        //2. Use a for loop starting from 0
+        /*3. In each iteration of the loop, calculate the current multiple using (i+1)
+             as I want the multiples starting from 1*/
+        //4. Store that multiple in position i of the array
+        //5. Return the array filled with multiples
+
         //create array length size
         double [] multiples = new double[length];
 
@@ -48,6 +56,6 @@ public static class Arrays
         //Insert elements at the beginning of the list
         data.InsertRange(0, tail);
 
-        
+
     }
 }
