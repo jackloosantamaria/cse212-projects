@@ -1,3 +1,5 @@
+using System.Globalization;
+
 public static class Arrays
 {
     /// <summary>
@@ -46,6 +48,15 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+
+        /* Plan of Rotate Right: I need to rotate the list to the right, meaning the last
+             numbers or elements needs to be moved to the front of the list*/
+
+        //1. Use Get Rnage to extract a sublist containing the last elements or numbers.
+        //2. Remove the elements from the end of the list using removeRange to prevent duplicates
+        //3. Insert the extracted sublist at the beginning of the original list using InsertRange(0, sublist)
+        //4. No need to return as we're modifying the list in place    
 
         //Get the last elements to place in front
         List<int> tail = data.GetRange(data.Count - amount, amount);
