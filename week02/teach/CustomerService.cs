@@ -11,20 +11,25 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Create a queue with invalid size (0)
+        // Expected Result: The size should be automatically established in 10
         Console.WriteLine("Test 1");
+        var cs = new CustomerService(0);
+        Console.WriteLine($"Size should be 10: {cs}");
 
-        // Defect(s) Found: 
+        // Defect(s) Found: none
 
         Console.WriteLine("=================");
 
         // Test 2
-        // Scenario: 
-        // Expected Result: 
+        // Scenario: Add a new client and serve them
+        // Expected Result: client most be shown and then delete from the queue
         Console.WriteLine("Test 2");
+        var cs2 = new CustomerService(1);
+        cs2.AddNewCustomer();
+        cs2.ServeCustomer();
 
-        // Defect(s) Found: 
+        // Defect(s) Found: If it's not delete correctly check serveCustomer
 
         Console.WriteLine("=================");
 
@@ -88,9 +93,14 @@ public class CustomerService {
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
-        _queue.RemoveAt(0);
-        var customer = _queue[0];
-        Console.WriteLine(customer);
+        if (_queue.Count <= 0){
+            Console.WriteLine("No Customers in the queue");
+        }
+        else {
+            var customer = _queue[0];
+            _queue.RemoveAt(0);
+            Console.WriteLine(customer);
+        }
     }
 
     /// <summary>
