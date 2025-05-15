@@ -6,6 +6,7 @@ public class PersonQueue
     private readonly List<Person> _queue = new();
 
     public int Length => _queue.Count;
+    //Gets the number of people in the queue
 
     /// <summary>
     /// Add a person to the queue

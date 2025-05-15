@@ -12,6 +12,8 @@ public class TakingTurnsQueue
     private readonly PersonQueue _people = new();
 
 
+
+    //Get the number of people in the queue
     public int Length => _people.Length;
 
     /// <summary>
@@ -42,7 +44,7 @@ public class TakingTurnsQueue
       
         if (person.Turns <= 0)
         {
-            // person.Turns -= 1;
+            // unlimited turns
             _people.Enqueue(person);
         }
         else {
@@ -53,9 +55,10 @@ public class TakingTurnsQueue
         }
        
 
-            //if turns == 1 they get this turn but are not re-added
+            
 
             return person;
+            //returns a string representation of the queue
         
     }
 
