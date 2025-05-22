@@ -1,4 +1,6 @@
 using System.Text.Json;
+using Microsoft.VisualBasic.FileIO;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 public static class SetsAndMaps
 {
@@ -22,7 +24,16 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var seenWords = new HashSet<string>();
+        List<string> wordsList = new List<string>();
+        foreach (var word in words)
+        {
+            string complement = new string(word.Reverse().ToArray());
+            if (seenWords.Contains(complement))
+                wordsList.Add($"{word} & {complement}");
+            seenWords.Add(word);
+        }
+        return wordsList.ToArray();
     }
 
     /// <summary>
@@ -43,6 +54,15 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            var degree = fields[3];
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree] += 1;
+            }
+            else
+            {
+                degrees[degree] = 1;
+            }
         }
 
         return degrees;
@@ -67,7 +87,44 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        var anagram = new Dictionary<char, int>();
+        string _word1 = word1.ToLower();
+        string _word2 = word2.ToLower();
+        string newWord1 = _word1.Replace(" ", "");
+        string newWord2 = _word2.Replace(" ", "");
+
+        foreach (char letter in newWord1)
+        {
+            if (anagram.ContainsKey(letter))
+            {
+                anagram[letter] += 1;
+            } else {
+                anagram[letter] = 1;
+            }
+        }
+
+        foreach (char letter in newWord2)
+        {
+            if (!anagram.ContainsKey(letter) || anagram[letter] == 0)
+            {
+                return false;
+            }
+            else
+            {
+                anagram[letter] -= 1;
+            }
+        }
+
+        foreach (var count in anagram.Values)
+        {
+            if (count != 0)
+            {
+                return false;
+            }
+        }
+
+
+        return true;
     }
 
     /// <summary>
@@ -101,6 +158,20 @@ public static class SetsAndMaps
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+
+        var result = new List<string>();
+        foreach (var feature in featureCollection.Features)
+        {
+            var place = feature.Properties.Place;
+            var mag = feature.Properties.Mag;
+
+            if (place != null && mag != null)
+            {
+                result.Add($"{place} - Mag {mag}");
+            }
+        }
+        return result.ToArray();
+
+  
     }
 }
