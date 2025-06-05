@@ -185,7 +185,7 @@ public class WildcardBinaryTests
     }
 }
 
-[TestClass]
+ [TestClass]
 public class SolveMazeTests
 {
     [TestMethod]
